@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{%for author in authors%}
+
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+        <h5 class="card-title">{{author.name}}</h5>
+        <p class="card-text"></p>
+        <form method="POST" action ='/authors/{{author.id}}/delete'><button class="btn btn-danger"> Remove</button></form>
+        <form action="/authors/{{author.id}}/articles"><button class="btn btn-primary">View Articles</button></form>
+        </div>
+    </div>
+{%endfor%}
+
+
+{% endblock %}

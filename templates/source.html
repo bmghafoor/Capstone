@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">{{source.name}}</h5>
+      {%if user_source|length == 0%}
+      <form method= 'POST' action="/source/{{source.id}}/add"><button class="btn btn-primary">Add to Favorites</button></form>
+      {%endif%}
+      {%if user_source|length > 0 %}
+      <form method= 'POST' action='/sources/{{source.id}}/delete'><button class="btn btn-danger">Remove from Favorites</button></form>
+      {%endif%}
+    </div>
+  </div>
+
+
+{% endblock %}

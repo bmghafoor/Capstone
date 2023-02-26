@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1><a href="/sources">Add Favorite Sources</a></h1>
+
+{%for source in sources%}
+
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+        <h5 class="card-title">{{source.name}}</h5>
+        <p class="card-text"></p>
+        <form method="POST" action ='/sources/{{source.id}}/delete'><button class="btn btn-danger"> Remove</button></form>
+        <form action="/sources/{{source.id}}/articles"><button class="btn btn-primary">View Articles</button></form>
+        </div>
+    </div>
+{%endfor%}
+
+
+{% endblock %}

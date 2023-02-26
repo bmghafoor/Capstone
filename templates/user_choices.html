@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block body_class %}onboarding{% endblock %}
+
+{% block content %}
+
+<h1><a href="/choices">Select Favorite Categories</a></h1>
+
+{% for cat in categories%} 
+<form action="/users/{{user.id}}/choices/{{cat.id}}", method="post">
+    <span class="card" style="width: 10rem;">
+    <span class="card-body">
+        <span class="card-title">{{cat.name}}</span>
+        <input type="checkbox" value="{{cat.id}}">
+    </span>
+    </span>
+    <button>Delete</button>
+</form>
+
+{%endfor%}
+
+
+
+
+{% endblock %}

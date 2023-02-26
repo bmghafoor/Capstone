@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Articles by {{author.name}}</h1>
+  {%for new in news%}
+    <div class="row gx-5">
+      <div class="col-md-6 mb-4">
+        <div class="bg-image hover-overlay ripple shadow-2-strong rounded-5" data-mdb-ripple-color="light">
+          <img src="{{new.image}}" class="img-fluid" />
+          <a href="#!">
+            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+          </a>
+        </div>
+      </div>
+    
+      <div class="col-md-6 mb-4">
+        <span class="badge bg-danger px-2 py-1 shadow-1-strong mb-3">{{new.title}}</span> 
+        <form action="/news/add_like/{{new.id}}" method="POST">
+          {%if new.id in likes%}
+          <button class="btn btn-sm {{'btn-primary'}}"> <i class="fa fa-thumbs-up"></i> </button>
+          {%else%}
+          <button style ='background-color:gray', class="btn btn-sm {{'btn-primary'}}"> <i class="fa fa-thumbs-up"></i> </button>
+          {%endif%}
+        </form><br>
+          Date: {{new.date}}
+          <p>Source: <a href="/source/{{new.source}}">{{new.s.name}}</a></p>
+        <h4><strong>{{new.description}}</strong></h4>
+        <p class="text-muted">
+          {{new.content}}
+        </p>
+        <a href="{{new.url}}" target="_blank">Read More</a>
+      </div>
+    </div>
+  {%endfor%}
+
+
+{% endblock %}

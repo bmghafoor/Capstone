@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+  {%if data|length == 0%}
+  <h1>Please Select from categories <a href="/choices">Here</a></h1>
+  {%endif%}
+
+  {%for item in data%}
+    <div class="row gx-5">
+      <div class="col-md-6 mb-4">
+        <div class="bg-image hover-overlay ripple shadow-2-strong rounded-5" data-mdb-ripple-color="light">
+          <img src="{{item.image}}" class="img-fluid" />
+          <a href="#!">
+            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+          </a>
+        </div>
+      </div>
+    
+      <div class="col-md-6 mb-4">
+        <span class="badge bg-danger px-2 py-1 shadow-1-strong mb-3">{{item.title}}</span> 
+        <form action="/news/add_like/{{item.id}}" method="POST">
+          {%if item.id in likes%}
+          <button class="btn btn-sm {{'btn-primary'}}"> <i class="fa fa-thumbs-up"></i> </button>
+          {%else%}
+          <button style ='background-color:gray', class="btn btn-sm {{'btn-primary'}}"> <i class="fa fa-thumbs-up"></i> </button>
+          {%endif%}
+        </form><br>
+        <span class="badge bg-danger px-2 py-1 shadow-1-strong mb-3">
+          By:
+          {%if item.author%} <a href="/author/{{item.author}}">{{(item.a.name)}}</a>
+          {%else%}None</a>{%endif%}</span>
+          Date: {{item.date}}
+          <p>Source: <a href="/source/{{item.source}}">{{(item.s.name)}}</a></p>
+        <h4><strong>{{item.description}}</strong></h4>
+        <p class="text-muted">
+          {{item.content}}
+        </p>
+        <a href="{{item.url}}" target="_blank">Read More</a>
+      </div>
+    </div>
+  {%endfor%}
+
+
+
+{% endblock %}
